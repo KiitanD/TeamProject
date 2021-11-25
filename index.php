@@ -35,13 +35,12 @@
         $("#reg_form").submit(function(event){
             event.preventDefault();
             var formValues= $(this).serialize();
-    
+
             $.ajax({
                 type: "POST",
                 url: "UserRegistration.php",
                 data: formValues
                 }).done(function(redirect) {
-                    alert(redirect);
                     location.href = goTo;
 
                 });
@@ -65,12 +64,12 @@
 
         $("#login_form").submit(function(event){
             event.preventDefault();
-            var formValues= $(this).serialize();
+            var loginValues= $(this).serialize();
             
             $.ajax({
                 type: "POST",
                 url: "loginprocessing.php",
-                data: formValues
+                data: loginValues
                 }).done(function(response) {
                     location.href= goTo;
 
@@ -124,7 +123,7 @@
 
         <!-- Signup Modal -->
         <div class="modal fade" id="Signup" tabindex="-1" role="dialog" aria-labelledby="SignupLabel" aria-hidden="true">
-            <form id= "reg_form" class="form-inline" method="POST">
+            <form id= "reg_form" action="UserRegistration.php" class="form-inline" method="POST">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

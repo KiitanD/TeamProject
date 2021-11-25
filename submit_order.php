@@ -14,8 +14,9 @@ foreach($_SESSION['post_data'] as $quant) {
     $item_name = $item_info[1];
     $item_price = $item_info[2];
     $item_rest = $item_info[3];
+    $cust_id = $_SESSION['userid'];
     if ($quant !=0) {
-    $submit_sql = "INSERT INTO orders(rest_id, menu_id, quantity) values($item_rest, $item_id, $quant)";
+    $submit_sql = "INSERT INTO orders(rest_id, menu_id, customer_id, quantity) values($item_rest, $item_id, $cust_id, $quant)";
     $insert_order = $conn->query($submit_sql) ;
     }
 }

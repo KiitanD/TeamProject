@@ -36,22 +36,24 @@ if (isset($_POST['Fname'])) {
 
     
 
-    $sql = "INSERT INTO customers(name, password, phone, email, address) VALUES('".$frstnm."', '".$password."', '".$phonebook."', '".$mailing."', '".$home."')";
+    $sql = "INSERT INTO customers(fname, password, phone, email, address) VALUES('".$frstnm."', '".$password."', '".$phonebook."', '".$mailing."', '".$home."')";
+    $sql2 = "SELECT cust_id FROM customers WHERE fname ='".$frstnm."'";
+    ob_clean();
+
 
     //$result = $database->query($sql);
     //echo("there");
     $conn = new mysqli(servername, username, password, database);
     $result = $conn->query($sql);
+    $result2 = $conn->query($sql2);
 
-    echo($sql);
-    //take the db object defined in signupProcessing.php then prepare it for data supplied into the  sql variable 
     
     if ($result) {
         $_SESSION['login'] = "true";
         $_SESSION['user'] = $frstnm;
-        ob_clean();
+        $_SESSION['userid'] = $result2->fetch_row()[0];
+        echo $_SESSION['redirect'];
 
-        echo($_SESSION['redirect']);
         //return($_SESSION['redirect']);
     }  
     else {
